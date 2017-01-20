@@ -77,7 +77,7 @@ public class MyIntentService extends IntentService {
 
         Request request = new Request.Builder()
                 .url("https://community-neutrino-currency-conversion.p.mashape.com/convert")
-                .addHeader("X-Mashape-Key", "bPrUbr25SZmsh16HTiGv6IW1itabp1Qu8eijsnMzmckW0DfvpL")
+                .addHeader("X-Mashape-Key", "YMPi21OEXlmsh0jfJu7gaOFKJIikp1uYy7PjsnEK1JbZkXLHsi")
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .addHeader("Accept", "application/json")
                 .post(formBody)

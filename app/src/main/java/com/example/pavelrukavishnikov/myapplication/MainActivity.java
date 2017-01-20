@@ -84,7 +84,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        final IntentFilter filter = new IntentFilter();
+        filter.addAction(MyIntentService.ACTION_GET_VALUE);
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
+        Log.d("Resume", " ");
         updateTypeCurrency();
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        Log.d("onPause", "A");
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
     private void updateTypeCurrency() {
         SharedPreferences myPrefs = getApplicationContext().getSharedPreferences("app", 0);
@@ -98,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateInfo(Currency cur) {
-
         EditText result = (EditText)findViewById(R.id.editText4);
         TextView fromType = (TextView)findViewById(R.id.textView2);
         TextView toType = (TextView)findViewById(R.id.textView);
