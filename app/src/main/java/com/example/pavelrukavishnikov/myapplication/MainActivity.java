@@ -68,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        final IntentFilter filter = new IntentFilter();
-        filter.addAction(MyIntentService.ACTION_GET_VALUE);
-        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
         updateTypeCurrency();
     }
 

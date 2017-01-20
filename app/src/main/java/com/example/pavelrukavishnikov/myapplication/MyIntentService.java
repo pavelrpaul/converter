@@ -83,15 +83,9 @@ public class MyIntentService extends IntentService {
                 .post(formBody)
                 .build();
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                Currency res = new Currency();
+        try {
+            Response response = client.newCall(request).execute();
+            Currency res = new Currency();
                 try {
                     String jsonData = response.body().string();
                     if (response.isSuccessful()) {
@@ -106,9 +100,9 @@ public class MyIntentService extends IntentService {
                     Log.d("lal", "Exception caught : ", e);
                 }
                 receiveResult(res);
-            }
-
-        });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     private Currency parseResponse(String jsonData) throws JSONException {
         JSONObject json = new JSONObject(jsonData);
